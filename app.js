@@ -7,6 +7,8 @@ app.get('/', (req, res) => {
 });
 
     console.log(" test 1");
+    console.log(" dev test 2");
+    console.log(" dev test 3");
 app.listen(PORT, () => {
     console.log(`My main Server running on http://localhost:${PORT}`);
 });
