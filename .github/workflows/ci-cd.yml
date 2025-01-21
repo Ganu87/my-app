@@ -7,7 +7,7 @@ on:
 
 jobs:
   build-and-deploy:
-    runs-on: self-hosted # Use 'ubuntu-latest' for GitHub-hosted runners
+    runs-on: self-hosted
 
     steps:
       # Step 1: Check out the code
@@ -27,6 +27,7 @@ jobs:
       # Step 4: Deploy to production folder
       - name: Deploy to production folder
         run: |
-          mkdir -p ~/prod/my-app
-          rm -rf ~/prod/my-app/*
-          cp -r . ~/prod/my-app/
+          $prodPath = "C:\Users\sde2\Documents\Projects\PG Node\CICD-local\prod\my-app"
+          if (Test-Path $prodPath) { Remove-Item -Recurse -Force $prodPath }
+          New-Item -ItemType Directory -Force -Path $prodPath
+          Copy-Item -Recurse -Force .\* $prodPath
