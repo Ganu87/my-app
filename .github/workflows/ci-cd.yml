@@ -1,0 +1,32 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-deploy:
+    runs-on: self-hosted # Use 'ubuntu-latest' for GitHub-hosted runners
+
+    steps:
+      # Step 1: Check out the code
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # Step 2: Install dependencies
+      - name: Install dependencies
+        run: |
+          npm install
+
+      # Step 3: Run tests (optional)
+      - name: Run tests
+        run: |
+          echo "No tests for this example"
+      
+      # Step 4: Deploy to production folder
+      - name: Deploy to production folder
+        run: |
+          mkdir -p ~/prod/my-app
+          rm -rf ~/prod/my-app/*
+          cp -r . ~/prod/my-app/
